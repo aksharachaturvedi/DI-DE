@@ -6,7 +6,8 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 /**
-
+ Word Count,  takes in a text file or set of text files from a directory and outputs the number
+ of occurrences for each word
  */
 public class WordCount {
 
@@ -15,12 +16,9 @@ public class WordCount {
 
     // count the works and fill the map in
     public static Map<String, Integer> getCountMap(Scanner in, Map<String, Integer> wordCountMap ) {
-        //to maintain the sorted order on keys use tree map
-        //Map<String, Integer> wordCountMap = new TreeMap<String, Integer>();
-
         while (in.hasNext()) {
 
-            String word = in.next().replaceAll("[^a-zA-Z ]", "").toLowerCase(); //remove the punctuations
+            String word = in.next().replaceAll("[^a-zA-Z -]", "").toLowerCase(); //remove the punctuations
 
             if ((word != "" || word != " " || !word.isEmpty())) {
                 if (wordCountMap.containsKey(word)) {
@@ -32,21 +30,6 @@ public class WordCount {
             }
         }
         return wordCountMap;
-    }
-
-    public static void main(String[] args)
-            throws FileNotFoundException {
-        // read the text into a map
-        File file = new File(inputDirName); //directory with files
-        Map<String, Integer> wordCountMap = new TreeMap<String, Integer>();
-
-        File[] listOfFiles = file.listFiles();
-        for (File filename : listOfFiles) { //go by files one by one
-            Scanner in = new Scanner(filename);
-            getCountMap(in, wordCountMap);
-        }
-        writeToFile(wordCountMap);
-
     }
 
     //write to output to file
@@ -70,5 +53,19 @@ public class WordCount {
             e.printStackTrace();
         }
     }
+    public static void main(String[] args)
+            throws FileNotFoundException {
+        // read the text into a map
+        File file = new File(inputDirName); //directory with files
+        //to maintain the sorted order on keys use tree map/sorted order
+        Map<String, Integer> wordCountMap = new TreeMap<String, Integer>();
 
+        File[] listOfFiles = file.listFiles();
+        for (File filename : listOfFiles) { //go by files one by one
+            Scanner in = new Scanner(filename);
+            getCountMap(in, wordCountMap);
+        }
+        writeToFile(wordCountMap);
+
+    }
 }
