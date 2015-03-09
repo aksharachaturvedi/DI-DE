@@ -10,6 +10,9 @@ import java.util.TreeMap;
  */
 public class WordCount {
 
+    private static final String inputDirName = "wc_input";
+    private static final String outputFileName = "wc_output/wc_result.txt";
+
     // count the works and fill the map in
     public static Map<String, Integer> getCountMap(Scanner in, Map<String, Integer> wordCountMap ) {
         //to maintain the sorted order on keys use tree map
@@ -34,7 +37,7 @@ public class WordCount {
     public static void main(String[] args)
             throws FileNotFoundException {
         // read the text into a map
-        File file = new File("wc_input"); //directory with files
+        File file = new File(inputDirName); //directory with files
         Map<String, Integer> wordCountMap = new TreeMap<String, Integer>();
 
         File[] listOfFiles = file.listFiles();
@@ -49,19 +52,19 @@ public class WordCount {
     //write to output to file
     public static void writeToFile(Map<String, Integer> wordCountMap) {
         try {
-            File file = new File("wc_output/wc_result.txt");
+            File file = new File(outputFileName);
             if (!file.exists()) {          // if file doesnt exists, then create it
                 file.createNewFile();
             }
             FileWriter filewriter = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bufferwriter = new BufferedWriter(filewriter);
+            BufferedWriter bufferWriter = new BufferedWriter(filewriter);
 
             for (String word : wordCountMap.keySet()) {
                 int frequency = wordCountMap.get(word);
-                bufferwriter.write(word + "  " + frequency + "\n");
+                bufferWriter.write(word + "  " + frequency + "\n");
             }
 
-            bufferwriter.close();
+            bufferWriter.close();
         }
         catch (IOException e) {
             e.printStackTrace();
