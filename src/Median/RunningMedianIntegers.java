@@ -54,7 +54,7 @@ public class RunningMedianIntegers {
 
     //sorts the files in a directory and get the count of words per line in a list
     public static List<Integer> getFileAndWordCount() throws FileNotFoundException, IOException {
-        File file = new File("wc_input"); //directory with files
+        File file = new File("../wc_input"); //directory with files
 
         File[] listOfFiles = file.listFiles();
         List<Integer>lineMedian = new ArrayList<Integer>();
@@ -107,7 +107,7 @@ public class RunningMedianIntegers {
 
     public static void writeToFile(List<Double> wordMedianList) {
         try {
-            File file = new File("wc_output/med_result.txt");
+            File file = new File("../wc_output/med_result.txt");
             if (!file.exists()) {          // if file doesnt exists, then create it
                 file.createNewFile();
             }

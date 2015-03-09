@@ -11,8 +11,8 @@ import java.util.TreeMap;
  */
 public class WordCount {
 
-    private static final String inputDirName = "wc_input";
-    private static final String outputFileName = "wc_output/wc_result.txt";
+    private static final String inputDirName = "../wc_input";
+    private static final String outputFileName = "../wc_output/wc_result.txt";
 
     // count the works and fill the map in
     public static Map<String, Integer> getCountMap(Scanner in, Map<String, Integer> wordCountMap ) {
